@@ -5,21 +5,31 @@ pipeline
     {
         stage("Build")
         {
-            steps{
+            steps
+            {
                 echo "Building"
-                }
+            }
         }
         stage("Test")
         {
-            steps{
+            steps
+            {
                 echo "Testing"
-                }
+            }
         }
         stage("Deploy")
         {
-            steps{
-                echo "Deploying"
+            when
+            {
+                expression
+                {
+                    BRANCH_NAME == "master"
                 }
+            }
+            steps
+            {
+                echo "Deploying"
+            }
         }
    }
 }
